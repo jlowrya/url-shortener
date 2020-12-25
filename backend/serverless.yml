@@ -1,0 +1,27 @@
+service: url-shortener
+
+custom:
+  stage: ${opt:stage, local}
+
+provider:
+  name: aws
+  region: us-east-1
+  profile: jlowrya-admin
+  environment:
+   STAGE: ${self:custom.stage}
+
+resources:
+  Resources:
+    urlTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.stage}-urls
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
