@@ -1,5 +1,8 @@
 # URL shortener
 
+## TODO
+- Incorporate non-200 headers into handler lib
+
 ## Project outline
 
 This project will aim to create a serverless url- shortener service. 
@@ -18,13 +21,22 @@ This project will aim to create a serverless url- shortener service.
 - Users should be able to keep track of how many times a shortened url is used
 
 
+## Project structure
+
+### Backend
+
+The backend of the project is a basic CRUD api for urls to shorten. In additon to this, a redirect endpoint is also provided. This endpoint is the one that users will be able to enter to get redirected to the desired site.
+
+All of the crud operations makee use of the handler-lib and dynamo-lib to standardize handler logic and database operations across the app. As of 28/12/2020, the redirect method, unlike the other api endpoints, does not implement the handler-lib. This is due to the redireect method returning a 302 header, which currently is not supported by the handler-lib.
+
+
 ## Recommended sprints
 
-### Sprint 1
+### Sprint 1 (Done)
 - Create dynamodb table to store urls
 - Create GET (at least) api endpoint to redirect to the desired site
 
-## Sprint 2
+## Sprint 2 (Done)
 - Create remaining CRUD operations for urls
 
 ## Sprint 3
