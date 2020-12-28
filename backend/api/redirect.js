@@ -9,13 +9,13 @@ export const main = async (event, context, callback) => {
     };
 
     const result = await dynamoDb.get(params);
+    console.log(result);
     if ( ! result.Item) {
         return callback(null, {
-            statusCode: 500,
-            body: "Item not found"
+            statusCode: 404,
+            body: "URL not found"
         });
     }
-
 
     const response = {
         statusCode: 302,
