@@ -32,6 +32,18 @@ functions:
           path: urls
           method: post
           cors: true
+  get:
+    handler: api/get.main
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - dynamodb:GetItem
+        Resource: !GetAtt urlTable.Arn
+    events:
+      - http:
+          path: urls/{id}
+          method: get
+          cors: true
   redirect:
     handler: api/redirect.main
     iamRoleStatements:
