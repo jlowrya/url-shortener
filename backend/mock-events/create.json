@@ -1,5 +1,5 @@
 {
-    "body": "{\"url\":\"www.google.com\"}",
+    "body": "{\"url\":\"https://www.google.com\"}",
     "requestContext": {
         "identity": {
             "cognitoIdentityId": "USER-SUB-1234"

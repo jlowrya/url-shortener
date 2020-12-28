@@ -56,6 +56,18 @@ functions:
           path: urls/{id}
           method: put
           cors: true
+  delete:
+    handler: api/delete.main
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - dynamodb:DeleteItem
+        Resource: !GetAtt urlTable.Arn
+    events:
+      - http:
+          path: urls/{id}
+          method: delete
+          cors: true
   redirect:
     handler: api/redirect.main
     iamRoleStatements:
