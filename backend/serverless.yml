@@ -44,6 +44,18 @@ functions:
           path: urls/{id}
           method: get
           cors: true
+  update:
+    handler: api/update.main
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - dynamodb:UpdateItem
+        Resource: !GetAtt urlTable.Arn
+    events:
+      - http:
+          path: urls/{id}
+          method: put
+          cors: true
   redirect:
     handler: api/redirect.main
     iamRoleStatements:
